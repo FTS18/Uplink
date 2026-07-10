@@ -71,15 +71,15 @@ const btnLabel = version
         <a href="/docs/install" class="btn btn-outline">Read the docs</a>
       </div>
 
-      <div class="hero-badges-marquee">
-        <div class="marquee-track">
-          <div class="marquee-content">
+      <div class="hero-badges-ticker">
+        <div class="ticker-track">
+          <div class="ticker-content">
             {version && <span class="badge badge-version">{version}</span>}
             <span class="badge">Windows 11</span>
             <span class="badge">No background service</span>
             <span class="badge">.NET 10{fileSizeMB ? ` · ${fileSizeMB} MB` : ' · ~5 MB'}</span>
           </div>
-          <div class="marquee-content" aria-hidden="true">
+          <div class="ticker-content" aria-hidden="true">
             {version && <span class="badge badge-version">{version}</span>}
             <span class="badge">Windows 11</span>
             <span class="badge">No background service</span>
@@ -223,30 +223,30 @@ const btnLabel = version
     margin-top: 0.25rem;
   }
 
-  .hero-badges-marquee {
+  .hero-badges-ticker {
     overflow: hidden;
     width: 100%;
     position: relative;
     padding: 0.2rem 0;
-    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
     display: flex;
   }
 
-  .marquee-track {
+  .ticker-track {
     display: flex;
     width: max-content;
-    animation: marqueeScroll 18s linear infinite;
+    animation: tickerScroll 18s linear infinite;
   }
 
-  .marquee-content {
+  .ticker-content {
     display: flex;
     gap: 0.75rem;
     padding-right: 0.75rem;
     align-items: center;
   }
 
-  @keyframes marqueeScroll {
+  @keyframes tickerScroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
@@ -442,7 +442,9 @@ const btnLabel = version
 
 
 
-    .hero-badges-marquee {
+    .hero-badges-ticker {
+      mask: none !important;
+      -webkit-mask: none !important;
       mask-image: none !important;
       -webkit-mask-image: none !important;
     }
