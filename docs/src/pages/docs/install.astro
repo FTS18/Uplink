@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Installation Guide" showSidebar={true} activeSlug="install">
+  <div class="prose">
   <h1>Installation Guide</h1>
   <p>Learn how to download, compile, or install BitBar to your Windows machine.</p>
 
@@ -56,4 +57,5 @@ dotnet run
 dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained false</code></pre>
 
   <p>This will generate a single-file executable in <code>windows/bin/Release/net10.0-windows/win-x64/publish/BitBar.exe</code>.</p>
+  </div>
 </Layout>

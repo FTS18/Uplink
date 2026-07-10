@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Troubleshooting Guide" showSidebar={true} activeSlug="troubleshooting">
+  <div class="prose">
   <h1>Troubleshooting Guide</h1>
   <p>Find solutions for common installation, execution, or runtime issues with BitBar.</p>
 
@@ -38,4 +39,5 @@ The process cannot access the file because it is being used by another process.<
   <h3>Solution:</h3>
   <p>BitBar requires the <strong>.NET 10.0 Desktop Runtime (x64)</strong>. Make sure you install the <em>"Desktop Runtime"</em> and NOT just the base runtime or SDK.</p>
   <p>You can download the installer from <a href="https://dotnet.microsoft.com/download/dotnet/10.0/runtime" target="_blank" rel="noopener noreferrer">Microsoft's .NET Portal</a>.</p>
+  </div>
 </Layout>
