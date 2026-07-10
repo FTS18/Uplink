@@ -1,16 +1,22 @@
-![BitBar](assets/logo.png)
-
-A minimal, native network speed monitor that lives in your Windows 11 taskbar. No bloat, no electron, no background services beyond itself.
-
-![screenshot](assets/screenshot.png)
-
-## What it does
-
-- Shows live upload and download speeds directly on the taskbar
-- Hover to get a flyout graph of the last 60 seconds of traffic, top process consuming bandwidth, and current speeds
-- Right-click for settings and controls
-- Fades out automatically when the network is idle
-- Detects your system theme and renders accordingly
+<table>
+  <tr>
+    <td width="55%" valign="top">
+      <img src="assets/logo.png" alt="BitBar Logo" width="260"><br><br>
+      A minimal, native network speed monitor that lives in your Windows 11 taskbar. No bloat, no electron, no background services beyond itself.
+    </td>
+    <td width="45%" valign="top">
+      <img src="assets/screenshot.png" alt="BitBar Screenshot" width="220"><br><br>
+      <strong>What it does:</strong>
+      <ul>
+        <li>Shows live upload/download speeds on taskbar</li>
+        <li>Hover for 60s graph & top process</li>
+        <li>Right-click for settings & controls</li>
+        <li>Fades out automatically when idle</li>
+        <li>Detects system theme (light/dark)</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ## Installation
 
