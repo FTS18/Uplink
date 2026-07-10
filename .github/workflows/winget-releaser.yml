@@ -1,0 +1,15 @@
+name: Publish to Winget
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Submit package to Windows Package Manager Community Repository
+        uses: vedantmgoyal2009/winget-releaser@v2
+        with:
+          identifier: FTS18.BitBar
+          installers-regex: '\.exe$'
+          token: ${{ secrets.WINGET_GH_TOKEN }}
