@@ -1,5 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// ── Fetch latest release from GitHub at build time ──────────────────────────
+const REPO = 'FTS18/BitBar';
+const FALLBACK_URL = `https://github.com/${REPO}/releases/latest`;
+
+interface GhAsset {
+  name: string;
+  size: number;
+  browser_download_url: string;
+}
+interface GhRelease {
+  tag_name: string;
+  name: string;
+  assets: GhAsset[];
+}
+
+let downloadUrl  = FALLBACK_URL;
+let version      = '';
+let assetName    = 'BitBar.exe';
+let fileSizeMB   = '';
+
+try {
+  const res  = await fetch(`https://api.github.com/repos/${REPO}/releases/latest`, {
+    headers: { Accept: 'application/vnd.github+json' },
+  });
+  if (res.ok) {
+    const rel: GhRelease = await res.json();
+    version = rel.tag_name;                                          // e.g. "v1.0.0"
+    const exe = rel.assets.find((a) => a.name.endsWith('.exe'));
+    if (exe) {
+      downloadUrl = exe.browser_download_url;
+      assetName   = exe.name;
+      fileSizeMB  = (exe.size / 1_048_576).toFixed(1);              // bytes → MB
+    }
+  }
+} catch (_) {
+  // Silent fallback — link goes to releases page
+}
+
+const btnLabel = version
+  ? `Download ${assetName} (${version})`
+  : `Download BitBar.exe`;
 ---
 
 <Layout title="Home">
@@ -20,20 +62,20 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="hero-actions">
         <a
-          href="https://github.com/FTS18/BitBar/releases"
-          target="_blank"
-          rel="noopener noreferrer"
+          href={downloadUrl}
+          download
           class="btn btn-dark"
         >
-          Download BitBar.exe
+          {btnLabel}
         </a>
         <a href="/docs/install" class="btn btn-outline">Read the docs</a>
       </div>
 
       <div class="hero-badges">
+        {version && <span class="badge badge-version">{version}</span>}
         <span class="badge">Windows 11</span>
         <span class="badge">No background service</span>
-        <span class="badge">.NET 10 &middot; ~5 MB</span>
+        <span class="badge">.NET 10{fileSizeMB ? ` · ${fileSizeMB} MB` : ' · ~5 MB'}</span>
       </div>
 
       <!-- Inline stats row -->
@@ -185,6 +227,12 @@ import Layout from '../layouts/Layout.astro';
     border: 1px solid var(--cream-300);
     padding: 0.18rem 0.6rem;
     border-radius: 999px;
+  }
+
+  .badge-version {
+    background: var(--ink-900);
+    color: var(--cream-50);
+    border-color: var(--ink-900);
   }
 
   /* ── Stats row ────────────────────── */
